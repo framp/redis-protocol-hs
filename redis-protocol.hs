@@ -7,8 +7,8 @@ generateRedisProtocol tokens = removeLastNewLine . unlines $
     commands = concat $ generateToken <$> tokens
     generateToken token = [ "$" ++ show (length token), token ]
 
-eachNonEmptyLine :: (String -> String) -> String -> String
-eachNonEmptyLine fn = removeLastNewLine . unlines . map fn . filter (/= "") . lines
+eachValidLine :: (String -> String) -> String -> String
+eachValidLine fn = removeLastNewLine . unlines . map fn . filter (/= "") . lines
 
 removeLastNewLine :: String -> String
 removeLastNewLine = init
